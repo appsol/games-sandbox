@@ -5,8 +5,8 @@ var particle = {
 
     create: function(x, y, speed, direction) {
         var obj = Object.create(this);
-        obj.position = vector.create(x, y);
-        obj.velocity = vector.create(0, 0);
+        obj.position = Vector.create(x, y);
+        obj.velocity = Vector.create(0, 0);
         obj.velocity.setLength(speed);
         obj.velocity.setAngle(direction);
         return obj;
@@ -32,7 +32,7 @@ var particle = {
     },
 
     gravitateTo: function(p2) {
-        var grav = vector.create(0, 0),
+        var grav = Vector.create(0, 0),
             dist = this.distanceTo(p2);
 
         grav.setLength(p2.mass / (dist * dist));

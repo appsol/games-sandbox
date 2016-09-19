@@ -1,83 +1,106 @@
-var vector = {
-    _x: 1,
-    _y: 0,
+"use strict";
 
-    create: function(x, y) {
-        var obj = Object.create(this);
-        obj.setX(x);
-        obj.setY(y);
-        return obj;
-    },
+var Vector = (function()
+    {
+        var Vector = function(x, y)
+        {
+            this.x = x;
+            this.y = y;
+        }
 
-    setX: function(value) {
-        this._x = value;
-    },
+        Vector.prototype.setX = function(value)
+        {
+            this.x = value;
+        };
 
-    getX: function() {
-        return this._x;
-    },
+        Vector.prototype.getX = function()
+        {
+            return this.x;
+        };
 
-    setY: function(value) {
-        this._y = value;
-    },
+        Vector.prototype.setY = function(value)
+        {
+            this.y = value;
+        };
 
-    getY: function() {
-        return this._y;
-    },
+        Vector.prototype.getY = function()
+        {
+            return this.y;
+        };
 
-    setAngle: function(angle) {
-        var length = this.getLength();
-        this._x = Math.cos(angle) * length;
-        this._y = Math.sin(angle) * length;
-    },
+        Vector.prototype.setAngle = function(angle)
+        {
+            var length = this.getLength();
+            this.x = Math.cos(angle) * length;
+            this.y = Math.sin(angle) * length;
+        };
 
-    getAngle: function() {
-        return Math.atan2(this._y, this._x);
-    },
+        Vector.prototype.getAngle = function()
+        {
+            return Math.atan2(this.y, this.x);
+        };
 
-    setLength: function(length) {
-        var angle = this.getAngle();
-        this._x = Math.cos(angle) * length;
-        this._y = Math.sin(angle) * length;
-    },
+        Vector.prototype.setLength = function(length)
+        {
+            var angle = this.getAngle();
+            this.x = Math.cos(angle) * length;
+            this.y = Math.sin(angle) * length;
+        };
 
-    getLength: function() {
-        return Math.sqrt(this._x * this._x + this._y * this._y);
-    },
+        Vector.prototype.getLength = function()
+        {
+            return Math.sqrt(this.x * this.x + this.y * this.y);
+        };
 
-    add: function(v2) {
-        return vector.create(this._x + v2.getX(), this._y + v2.getY());
-    },
+        Vector.prototype.add = function(v2)
+        {
+            return vector.create(this.x + v2.getX(), this.y + v2.getY());
+        };
 
-    subtract: function(v2) {
-        return vector.create(this._x - v2.getX(), this._y - v2.getY());
-    },
+        Vector.prototype.subtract = function(v2)
+        {
+            return vector.create(this.x - v2.getX(), this.y - v2.getY());
+        };
 
-    multiply: function(val) {
-        return vector.create(this._x * val, this._y * val);
-    },
+        Vector.prototype.multiply = function(val)
+        {
+            return vector.create(this.x * val, this.y * val);
+        };
 
-    divide: function(val) {
-        return vector.create(this._x / val, this._y / val);
-    },
+        Vector.prototype.divide = function(val)
+        {
+            return vector.create(this.x / val, this.y / val);
+        };
 
-    addTo: function(v2) {
-        this._x += v2.getX();
-        this._y += v2.getY();
-    },
+        Vector.prototype.addTo = function(v2)
+        {
+            this.x += v2.getX();
+            this.y += v2.getY();
+        };
 
-    subtractFrom: function(v2) {
-        this._x -= v2.getX();
-        this._y -= v2.getY();
-    },
+        Vector.prototype.subtractFrom = function(v2)
+        {
+            this.x -= v2.getX();
+            this.y -= v2.getY();
+        };
 
-    multiplyBy: function(val) {
-        this._x *= val;
-        this._y *= val;
-    },
+        Vector.prototype.multiplyBy = function(val)
+        {
+            this.x *= val;
+            this.y *= val;
+        };
 
-    divideBy: function(val) {
-        this._x /= val;
-        this._y /= val;
-    }
-};
+        Vector.prototype.divideBy = function(val)
+        {
+            this.x /= val;
+            this.y /= val;
+        }
+
+        return {
+            create: function(x,y)
+            {
+                return new Vector(x, y);
+            }
+        }
+
+    }());
