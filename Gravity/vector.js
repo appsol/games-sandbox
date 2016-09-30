@@ -1,12 +1,12 @@
 "use strict";
 
-var Vector = (function()
+var vector = (function()
     {
         var Vector = function(x, y)
         {
             this.x = x;
             this.y = y;
-        }
+        };
 
         Vector.prototype.setX = function(value)
         {
@@ -94,13 +94,13 @@ var Vector = (function()
         {
             this.x /= val;
             this.y /= val;
-        }
+        };
 
         return {
             create: function(x,y)
             {
                 return new Vector(x, y);
             }
-        }
+        };
 
     }());
