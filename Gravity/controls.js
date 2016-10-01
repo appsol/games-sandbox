@@ -1,39 +1,65 @@
-"use strict";
-
-var controls = (function()
+var controls = (function(m)
     {
-        var subscribe = function(channel, callback)
+        var instance;
+
+        var onKeyDown = function(event)
         {
-            if (!controls.channels[channel]) {
-                controls.channels[channel] = [];
+            switch(event.keyCode) {
+                case 38:// up
+                    instance.publish('keydown_38');
+                    break;
+                case 37:// left
+                    instance.publish('keydown_37');
+                    break;
+                case 39:// right
+                    instance.publish('keydown_39');
+                    break;
+                case 40:// down
+                    instance.publish('keydown_40');
+                    break;
+                default:
+                    break;
             }
-            controls.channels[channel].push({
-                context: this,
-                callback: callback
-            });
-            return this;
         };
 
-        var publish = function(channel)
+        var onKeyUp = function(event)
         {
-            if (!controls.channels[channel]) {
-                return false;
+            switch(event.keyCode) {
+                case 38:// up
+                    instance.publish('keyup_38');
+                    break;
+                case 37:// left
+                    instance.publish('keyup_37');
+                    break;
+                case 39:// right
+                    instance.publish('keyup_39');
+                    break;
+                case 40:// down
+                    instance.publish('keyup_40');
+                    break;
+                default:
+                    break;
             }
-            var args = Array.prototype.slice.call(arguments, 1);
-            for (var i = controls.channels[channel].length - 1; i >= 0; i--) {
-                var subscription = controls.channels[channel][i];
-                subscription.callback.apply(subscription.context, args);
+        };
+
+        var init = function()
+        {
+            document.body.addEventListener('keydown', onKeyDown);
+            document.body.addEventListener('keyup', onKeyUp);
+            return {
+                onKeyDown: onKeyDown,
+                onKeyUp: onKeyUp
             }
-            return this;
         };
 
         return {
-            channels: {},
-            publish: publish,
-            subscribe: subscribe,
-            installTo: function(obj) {
-                obj.subscribe = subscribe;
-                obj.publish = publish;
+            getInstance: function()
+            {
+                if (!instance) {
+                    instance = init();
+                    m.installTo(instance);
+                }
+                return instance;
             }
         }
-    })();
+    })(mediator);

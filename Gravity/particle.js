@@ -43,6 +43,13 @@ var particle  = (function(v)
             this.velocity.addTo(grav);
         };
 
+        Particle.prototype.draw = function(context)
+        {
+            context.beginPath();
+            context.arc(this.position.getX(), this.position.getY(), 10, 0, Math.PI * 2, false);
+            context.fill();
+        };
+
         return {
             create: function(x, y, speed, direction, grav) {
                 var p = new Particle();
