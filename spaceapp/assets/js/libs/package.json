@@ -1,0 +1,16 @@
+{
+  "name": "spaceapp",
+  "version": "0.1.0",
+  "description": "A 2d space game using Backbone and the Canvas API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "backbone": "^1.3.3",
+    "jquery": "^3.1.1",
+    "lodash": "^4.16.4"
+  }
+}
