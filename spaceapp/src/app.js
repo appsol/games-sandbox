@@ -19,16 +19,19 @@ var app = (function(w, $)
             return modules[name] = {};
         };
 
-        return function ()
-        {
-            return w.app || new App();
-        }
-
         /*
         Initialize the application on DOM Ready
         */
         $(function()
             {
-
+                var canvas = app.getModule('canvas');
+                new canvas.View();
             });
+
+        // return function ()
+        // {
+            return app || new App();
+        // };
     }(window, jQuery));
+
+// console.log(app);

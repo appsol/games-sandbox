@@ -5,7 +5,7 @@
     Points have velocity by relation to their old position (x1,y1)
 */
 
-var Point = (function(app)
+(function(app)
     {
         var Point = app.getModule('point');
 

@@ -9,7 +9,7 @@
     Particles can have Bounciness
 */
 
-var Particle = (function(app)
+(function(app)
     {
         var Particle = app.getModule('particle');
 
