@@ -1,8 +1,10 @@
 /*
     Point Module
     Points are single points on the screen
-    Points have a position (x2,y2)
-    Points have velocity by relation to their old position (x1,y1)
+    Points have a position (x1,y1)
+    Points have velocity by relation to their old position (x0,y0)
+    Points can have an optional radius (r) (visibility)
+    Points can have an optional acceleration (a)
 */
 
 (function(app)
@@ -15,25 +17,41 @@
 
             },
             defaults: {
-                x1: 0,//old X
-                y1: 0,// old Y
-                x2: 0,// current X
-                y2: 0,// currentY
+                x0: 0,//old X
+                y0: 0,// old Y
+                x1: 0,// current X
+                y1: 0,// currentY
+                r: 0,// Radius
+                a: 0,// Acceleration
+                f: 0,// Friction
+                b: 0// Bounce
             }
         });
 
         Point.List = Backbone.Collection.extend({
-            model: Point.Model
+            model: Point.Model,
         });
 
-        return {
-            createModel: function(modelData)
+        Point.View = Backbone.View.extend({
+            el: '#canvas',
+            initialize: function(viewData)
             {
-                return new Point.Model(modelData);
+                this.context = viewData.context;
+                if(this.model.get('r') > 0){
+                    this.render();
+                }
             },
-            createList: function(modelsData)
+            render: function()
             {
-                return new Point.List(modelsData);
+                this.context.beginPath();
+                this.context.arc(
+                    this.model.get('x1'),
+                    this.model.get('y1'),
+                    this.model.get('r'),
+                    0,
+                    Math.PI * 2
+                );
+                this.context.fill();new Number(value)
             }
-        };
+        });
     })(app);

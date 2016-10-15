@@ -16,16 +16,16 @@
         Particle.Model = Backbone.Model.extend({
             initialize: function(modelData)
             {
-
+                var modelData = modelData || {p: [], s: []};
+                var Point = app.getModule('point');
+                this.set('p', new Point.List(modelData.p));
+                var Stick = app.getModule('stick');
+                this.set('s', new Stick.List(modelData.s));
             },
             defaults: {
                 p: null,// Points (BB Collection)
                 s: null,// Sticks (BB Collection)
-                r: 0,// Radius
-                m: 1,// Mass
-                a: 0,// Acceleration
-                f: 0,// Friction
-                b: 0// Bounce
+                m: 1// Mass
             }
         });
 
@@ -67,45 +67,3 @@
             }
         });
     })(app);
-
-var particleJson = [
-    {
-        "p": {
-            "1": {
-                "x1": 100,
-                "y1": 100,
-                "x2": 105,
-                "y2": 105
-            },
-            "2": {
-                "x1": 120,
-                "y1": 100,
-                "x2": 125,
-                "y2": 105
-            },
-            "3": {
-                "x1": 100,
-                "y1": 120,
-                "x2": 105,
-                "y2": 125
-            }
-        },
-        "s": {
-            "s1": {
-                "p0": 1,
-                "p1": 2,
-                "v": 1
-            },
-            "s2": {
-                "p0": 2,
-                "p1": 3,
-                "v": 1
-            },
-            "s3": {
-                "p0": 3,
-                "p1": 1,
-                "v": 1
-            }
-        }
-    }
-];

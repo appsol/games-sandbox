@@ -24,8 +24,8 @@ var app = (function(w, $)
         */
         $(function()
             {
-                var canvas = app.getModule('canvas');
-                new canvas.View();
+                var Canvas = app.getModule('canvas');
+                new Canvas.View();
             });
 
         // return function ()
