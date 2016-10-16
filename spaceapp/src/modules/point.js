@@ -37,21 +37,19 @@
             initialize: function(viewData)
             {
                 this.context = viewData.context;
-                if(this.model.get('r') > 0){
-                    this.render();
-                }
             },
             render: function()
             {
-                this.context.beginPath();
-                this.context.arc(
-                    this.model.get('x1'),
-                    this.model.get('y1'),
-                    this.model.get('r'),
-                    0,
-                    Math.PI * 2
-                );
-                this.context.fill();new Number(value)
+                if(this.model.get('r') > 0){
+                    this.context.arc(
+                        this.model.get('x1'),
+                        this.model.get('y1'),
+                        this.model.get('r'),
+                        0,
+                        Math.PI * 2
+                    );
+                    this.context.fill();
+                }
             }
         });
     })(app);

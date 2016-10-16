@@ -14,13 +14,17 @@
         var Particle = app.getModule('particle');
 
         Particle.Model = Backbone.Model.extend({
-            initialize: function(modelData)
+            initialize: function(particleData)
             {
-                var modelData = modelData || {p: [], s: []};
                 var Point = app.getModule('point');
-                this.set('p', new Point.List(modelData.p));
                 var Stick = app.getModule('stick');
-                this.set('s', new Stick.List(modelData.s));
+
+                var particleData = particleData || {},
+                    points = particleData['p'] || [],
+                    sticks = particleData['s'] || [];
+                particleData.p = new Point.List(points);
+                particleData.s = new Point.List(sticks);
+                this.set(particleData);
             },
             defaults: {
                 p: null,// Points (BB Collection)
@@ -34,14 +38,19 @@
             // url: 'assets/js/particles.json'
         });
 
+        /*
+            Particle View
+            Description:
+            Responsible for rendering 
+        */
         Particle.View = Backbone.View.extend({
             el: '#canvas',
             initialize: function(viewData)
             {
                 this.context = viewData.context;
-                this.particles = new Particle.List(particleJson);
+                // this.particles = new Particle.List(particleJson);
                 // this.particles.fetch();
-                this.render();
+                // this.render();
             },
             render: function()
             {

@@ -27,6 +27,21 @@ describe('Point', function()
                         expect(pointModel.get('f')).toBe(0);
                         expect(pointModel.get('b')).toBe(0);
                     });
+
+                it('should update position with regard to velocity', function()
+                {
+
+                });
+
+                it('should change velocity with acceleration', function()
+                {
+
+                });
+
+                it('should change velocity with bounce when it encounters a constraint', function()
+                {
+
+                });
             });
 
         describe('Point Collection', function()
