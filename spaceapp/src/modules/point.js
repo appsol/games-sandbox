@@ -9,13 +9,10 @@
 
 (function(app)
     {
-        var Point = app.getModule('point');
+        var Point = app.getModule('point')
+            timeStep = 0.02;
 
         Point.Model = Backbone.Model.extend({
-            initialize: function()
-            {
-
-            },
             defaults: {
                 x0: 0,//old X
                 y0: 0,// old Y
@@ -23,9 +20,22 @@
                 y1: 0,// currentY
                 r: 0,// Radius
                 a: 0,// Acceleration
-                f: 0,// Friction
-                b: 0// Bounce
-            }
+                f: 1,// Friction
+                b: 1// Bounce
+            },
+            update: function()
+            {
+                var vx = (this.get('x1') - this.get('x0')) * this.get('f'),
+                    vy = (this.get('y1') - this.get('y0')) * this.get('f'),
+                    a = this.get('a') * timeStep * timeStep;
+                vx+= vx >= 0? a : -1 * a;
+                vy+= vx >= 0? a : -1 * a;
+
+                this.set('x0', this.get('x1'));
+                this.set('y0', this.get('y1'));
+                this.set('x1', this.get('x1') + vx);
+                this.set('y1', this.get('y1') + vy);
+            },
         });
 
         Point.List = Backbone.Collection.extend({
