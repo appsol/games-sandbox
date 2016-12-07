@@ -1,15 +1,20 @@
 /*
+    Application base file
 
+    @author Stuart Laverick
 */
 
 var app = (function(w, $)
     {
-        var App = function ()
-        {
-            this.gravity = 0.5;
-        };
-
-        var modules = {};
+        var Canvas,
+            modules = {},
+            App = function ()
+            {
+                /*
+                    Constants
+                */
+                this.gravity = 0.5;
+            };
 
         App.prototype.getModule = function(name)
         {
@@ -20,18 +25,26 @@ var app = (function(w, $)
         };
 
         /*
+            Main game loop
+        */
+        var update = function ()
+        {
+            new Canvas.View();
+
+            requestAnimationFrame(update);
+        };
+
+        /*
         Initialize the application on DOM Ready
         */
-        $(function()
-            {
-                var Canvas = app.getModule('canvas');
-                new Canvas.View();
-            });
+        $(function ()
+        {
+            Canvas = app.getModule('canvas');
+            update();
+        });
 
-        // return function ()
-        // {
             return app || new App();
-        // };
+
     }(window, jQuery));
 
 // console.log(app);

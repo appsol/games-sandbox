@@ -1,24 +1,50 @@
 /*
-
+    Canvas module
+    The canvas is the stage onto which all Particles are rendered
+    A Canvas has a width (default is the screen width)
+    A Canvas has a height (default is the screen height)
 */
 
 (function(app)
     {
-        var Canvas = app.getModule('canvas');
+        var Canvas = app.getModule('canvas'),
+            Particle = app.getModule('particle');
 
         Canvas.View = Backbone.View.extend({
-            el: '#canvas',
-            initialize: function()
+            tagName: 'canvas',
+            initialize: function(data)
             {
-                this.width = this.el.width = window.innerWidth;
-                this.height = this.el.height = window.innerHeight;
+                var canvasData = typeof data != 'undefined'? data : {};
+
+                // Set up the parameters for the root element
+                this.el.id = canvasData.id || 'canvas';
+                this.width = canvasData.width || window.innerWidth;
+                this.height = canvasData.height || window.innerHeight;
+                this.el.width = this.width;
+                this.el.height = this.height;
                 this.context = this.el.getContext('2d');
-                var Particle = app.getModule('particle');
-                new Particle.View({context: this.context});
+
+                // Get the list of particles associated with this canvas
+                this.particles = new Particle.List(canvasData.collection || '');
+
+                this.render();
             },
             render: function()
             {
                 this.context.clearRect(0, 0, this.width, this.height);
+                
+                this.particles.each(function(item)
+                {
+                    this.renderParticle(item);
+                });
+            },
+            renderParticle: function(item)
+            {
+                var particleView = new Particle.View({
+                    model: item,
+                    context: this.context
+                });
+                particleView.render();
             }
         });
     })(app);

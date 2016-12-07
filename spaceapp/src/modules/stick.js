@@ -16,7 +16,10 @@
             defaults: {
                 p0: 0,// Start Point ID
                 p1: 0,// End Point ID
-                w: 0// width (thickness)
+                d:  0,// Resting distance
+                td: 0,// Tear Distance 
+                s:  0,// Stiffness
+                w:  0// Width (thickness)
             }
         });
 

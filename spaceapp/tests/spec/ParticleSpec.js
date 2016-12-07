@@ -21,7 +21,6 @@ describe('Particle', function()
                         var emptyModel = new Particle.Model();
                         expect(emptyModel.get('p')).toEqual(jasmine.any(Backbone.Collection));
                         expect(emptyModel.get('s')).toEqual(jasmine.any(Backbone.Collection));
-                        expect(emptyModel.get('m')).toBe(1);
                     });
 
                 it('should have an attribute "p" which is a Backbone Collection', function()

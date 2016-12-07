@@ -2,11 +2,6 @@
     Particle Module
     Particles are entities that are rendered to screen
     Particles are defined by a collection of points and sticks
-    Particles can have a Radius (if composed of 1 point)
-    Particles can have Mass
-    Particles can have Acceleration
-    Particles can have Friction
-    Particles can have Bounciness
 */
 
 (function(app)
@@ -14,28 +9,33 @@
         var Particle = app.getModule('particle');
 
         Particle.Model = Backbone.Model.extend({
-            initialize: function(particleData)
+            initialize: function(data)
             {
                 var Point = app.getModule('point');
                 var Stick = app.getModule('stick');
 
-                var particleData = particleData || {},
-                    points = particleData['p'] || [],
-                    sticks = particleData['s'] || [];
+                var particleData = data || {},
+                    points = particleData.p || [],
+                    sticks = particleData.s || [];
                 particleData.p = new Point.List(points);
                 particleData.s = new Point.List(sticks);
                 this.set(particleData);
             },
             defaults: {
                 p: null,// Points (BB Collection)
-                s: null,// Sticks (BB Collection)
-                m: 1// Mass
+                s: null// Sticks (BB Collection)
             }
         });
 
         Particle.List = Backbone.Collection.extend({
             model: Particle.Model,
-            // url: 'assets/js/particles.json'
+            url: 'assets/js/particles/',
+            initialize: function (data)
+            {
+                if (data.collection) {
+                    this.url+= data.collection;
+                }
+            }
         });
 
         /*
@@ -44,10 +44,9 @@
             Responsible for rendering 
         */
         Particle.View = Backbone.View.extend({
-            el: '#canvas',
-            initialize: function(viewData)
+            initialize: function(data)
             {
-                this.context = viewData.context;
+                this.context = data.context;
                 // this.particles = new Particle.List(particleJson);
                 // this.particles.fetch();
                 // this.render();

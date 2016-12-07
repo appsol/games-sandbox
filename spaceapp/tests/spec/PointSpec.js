@@ -90,7 +90,7 @@ describe('Point', function()
                     expect(pointModel.get('y1')).toBe(79.9996);
                 });
 
-                it('should change velocity with bounce when it encounters a constraint', function()
+                xit('should change velocity with bounce when it encounters a constraint', function()
                 {
                     pointModel.set({
                         x0: 100,
@@ -120,5 +120,9 @@ describe('Point', function()
                     {
                         expect(pointCollection).toEqual(jasmine.any(Backbone.Collection));
                     });
+                it('should contain Point Models', function()
+                   {
+                        expect(pointCollection.model).toBe(Point.Model);
+                   });
             });
     });
