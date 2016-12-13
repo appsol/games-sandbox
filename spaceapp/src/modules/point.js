@@ -69,6 +69,8 @@
                     );
                     this.context.fill();
                 }
+
+                return this;
             }
         });
     })(app);

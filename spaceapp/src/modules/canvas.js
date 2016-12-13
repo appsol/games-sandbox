@@ -27,16 +27,17 @@
                 // Get the list of particles associated with this canvas
                 this.particles = new Particle.List(canvasData.collection || '');
 
+                _.bindAll(this, 'renderParticle');
+
                 this.render();
             },
             render: function()
             {
                 this.context.clearRect(0, 0, this.width, this.height);
                 
-                this.particles.each(function(item)
-                {
-                    this.renderParticle(item);
-                });
+                this.particles.each(this.renderParticle, this);
+
+                return this;
             },
             renderParticle: function(item)
             {

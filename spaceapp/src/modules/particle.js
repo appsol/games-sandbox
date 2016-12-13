@@ -18,7 +18,7 @@
                     points = particleData.p || [],
                     sticks = particleData.s || [];
                 particleData.p = new Point.List(points);
-                particleData.s = new Point.List(sticks);
+                particleData.s = new Stick.List(sticks);
                 this.set(particleData);
             },
             defaults: {
@@ -32,8 +32,8 @@
             url: 'assets/js/particles/',
             initialize: function (data)
             {
-                if (data.collection) {
-                    this.url+= data.collection;
+                if (typeof data === 'string') {
+                    this.url+= data;
                 }
             }
         });
@@ -57,21 +57,32 @@
                 this.context.strokeStyle = "white";
                 this.context.lineWidth = 1;
                 this.context.beginPath();
-                this.particles.each (_.bind(function(particle)
-                    {
-                        var sticks = particle.get('s'),
-                            points = particle.get('p');
-                        // this.context.beginPath();
-                        _.forEach (sticks, _.bind(function(stick)
-                        {
-                            // this.context.beginPath();
-                            this.context.moveTo(points[stick.p0].x2, points[stick.p0].y2);
-                            this.context.lineTo(points[stick.p1].x2, points[stick.p1].y2);
-                            // this.context.stroke();
-                        }, this));
+
+                var sticks = this.model.get('s'),
+                    points = this.model.get('p'),
+                    sticksLength = sticks.length,
+                    pointsLength = points.length;
+
+                // for (var i = sticksLength - 1; i >= 0; i--) {
+                //     var startPoint = points[sticks[i].p0],
+                //         endPoint = points[sticks[i].p1];
+
+                //     this.context.moveTo(startPoint.x2, startPoint.y2);
+                //     this.context.lineTo(endPoint.x2, endPoint.y2);
+                // }
+                // this.context.beginPath();
+                sticks.each(_.bind(function(stick)
+                {
+                    var startPoint = points.get(stick.get('p0')),
+                        endPoint = points.get(stick.get('p1'));
+                    this.context.moveTo(startPoint.get('x1'), startPoint.get('y1'));
+                    this.context.lineTo(endPoint.get('x1'), endPoint.get('y1'));
+                    // this.context.stroke();
+                }, this));
                         // this.context.stroke();
-                    }, this));
                 this.context.stroke();
+
+                return this;
             }
         });
     })(app);

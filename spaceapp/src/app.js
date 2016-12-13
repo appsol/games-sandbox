@@ -29,8 +29,6 @@ var app = (function(w, $)
         */
         var update = function ()
         {
-            new Canvas.View();
-
             requestAnimationFrame(update);
         };
 
@@ -40,11 +38,13 @@ var app = (function(w, $)
         $(function ()
         {
             Canvas = app.getModule('canvas');
+            var canvasView = new Canvas.View({
+                collection: particleJson
+            });
+            $('body').append(canvasView.render().el);
             update();
         });
 
             return app || new App();
 
     }(window, jQuery));
-
-// console.log(app);
