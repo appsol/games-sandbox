@@ -1,7 +1,8 @@
-"use strict";
+
 
 var mediator = (function()
     {
+        "use strict";
         var subscribe = function(channel, callback)
         {
             if (!mediator.channels[channel]) {

@@ -6,6 +6,7 @@
 
 var app = (function(w, $)
     {
+        "use strict";
         var Canvas,
             modules = {},
             App = function ()

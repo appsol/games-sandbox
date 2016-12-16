@@ -6,6 +6,7 @@
 
 (function(app)
     {
+        "use strict";
         var Particle = app.getModule('particle');
 
         Particle.Model = Backbone.Model.extend({
@@ -47,13 +48,9 @@
             initialize: function(data)
             {
                 this.context = data.context;
-                // this.particles = new Particle.List(particleJson);
-                // this.particles.fetch();
-                // this.render();
             },
             render: function()
             {
-                // this.context.beginPath();
                 this.context.strokeStyle = "white";
                 this.context.lineWidth = 1;
                 this.context.beginPath();
@@ -63,23 +60,13 @@
                     sticksLength = sticks.length,
                     pointsLength = points.length;
 
-                // for (var i = sticksLength - 1; i >= 0; i--) {
-                //     var startPoint = points[sticks[i].p0],
-                //         endPoint = points[sticks[i].p1];
-
-                //     this.context.moveTo(startPoint.x2, startPoint.y2);
-                //     this.context.lineTo(endPoint.x2, endPoint.y2);
-                // }
-                // this.context.beginPath();
                 sticks.each(_.bind(function(stick)
                 {
                     var startPoint = points.get(stick.get('p0')),
                         endPoint = points.get(stick.get('p1'));
                     this.context.moveTo(startPoint.get('x1'), startPoint.get('y1'));
                     this.context.lineTo(endPoint.get('x1'), endPoint.get('y1'));
-                    // this.context.stroke();
                 }, this));
-                        // this.context.stroke();
                 this.context.stroke();
 
                 return this;

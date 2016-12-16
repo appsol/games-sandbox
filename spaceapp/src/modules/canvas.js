@@ -7,6 +7,7 @@
 
 (function(app)
     {
+        "use strict";
         var Canvas = app.getModule('canvas'),
             Particle = app.getModule('particle');
 

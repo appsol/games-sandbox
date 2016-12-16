@@ -12,7 +12,8 @@
 
 (function(app)
     {
-        var Point = app.getModule('point')
+        "use strict";
+        var Point = app.getModule('point'),
             timeStep = 0.02;
 
         Point.Model = Backbone.Model.extend({

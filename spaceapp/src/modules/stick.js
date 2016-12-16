@@ -6,6 +6,7 @@
 
 (function(app)
     {
+        "use strict";
         var Stick = app.getModule('stick');
 
         Stick.Model = Backbone.Model.extend({
