@@ -1,0 +1,16 @@
+{
+  "name": "webrtc",
+  "version": "0.1.0",
+  "description": "Experiments in Web RTC",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jquery": "~3",
+    "lodash": "~4",
+    "webrtc-adapter": "~4"
+  }
+}
