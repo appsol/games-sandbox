@@ -9,12 +9,15 @@ var app = (function(w, $)
         "use strict";
         var Canvas,
             modules = {},
+            // App = _.extend({}, Backbone.Events);
             App = function ()
             {
                 /*
                     Constants
                 */
                 this.gravity = 0.5;
+
+                this.events = _.extend({}, Backbone.Events);
             };
 
         App.prototype.getModule = function(name)
@@ -30,6 +33,7 @@ var app = (function(w, $)
         */
         var update = function ()
         {
+            app.events.trigger('update');
             requestAnimationFrame(update);
         };
 
@@ -46,6 +50,6 @@ var app = (function(w, $)
             update();
         });
 
-            return app || new App();
+        return app || new App();
 
     }(window, jQuery));

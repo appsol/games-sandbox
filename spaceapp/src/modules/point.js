@@ -28,8 +28,13 @@
                 f: 1,// Friction
                 b: 1// Bounce
             },
+            initialize: function()
+            {
+                this.listenTo(app.events, 'point:update', this.update);
+            },
             update: function()
             {
+                console.log('Point at  X:' + this.get('x1') + ' Y:' + this.get('y1'));
                 // Velocity is new position - old position * friction
                 var vx = (this.get('x1') - this.get('x0')) * this.get('f'),
                     vy = (this.get('y1') - this.get('y0')) * this.get('f'),

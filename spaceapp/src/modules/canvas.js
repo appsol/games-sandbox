@@ -35,7 +35,7 @@
             render: function()
             {
                 this.context.clearRect(0, 0, this.width, this.height);
-                
+
                 this.particles.each(this.renderParticle, this);
 
                 return this;

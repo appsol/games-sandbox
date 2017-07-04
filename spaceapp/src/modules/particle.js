@@ -48,6 +48,7 @@
             initialize: function(data)
             {
                 this.context = data.context;
+                this.listenTo(this.model, 'change', this.render);
             },
             render: function()
             {

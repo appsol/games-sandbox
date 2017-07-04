@@ -12,7 +12,7 @@
         Stick.Model = Backbone.Model.extend({
             initialize: function()
             {
-
+                this.listenTo(app.events, 'stick:update', this.update);
             },
             defaults: {
                 p0: 0,// Start Point ID
@@ -21,6 +21,10 @@
                 td: 0,// Tear Distance 
                 s:  0,// Stiffness
                 w:  0// Width (thickness)
+            },
+            update: function()
+            {
+                
             }
         });
 
