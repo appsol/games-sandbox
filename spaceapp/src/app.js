@@ -9,7 +9,10 @@ var app = (function(w, $)
         "use strict";
         var Canvas,
             modules = {},
-            // App = _.extend({}, Backbone.Events);
+            /*
+                App is the global object
+                App provides a global service layer
+             */
             App = function ()
             {
                 /*
@@ -19,7 +22,11 @@ var app = (function(w, $)
 
                 this.events = _.extend({}, Backbone.Events);
             };
-
+        /*
+            Module factory
+            Returns the named module if found
+            Adds and returns a named object literal if not
+        */
         App.prototype.getModule = function(name)
         {
             if (modules[name]) {
@@ -37,8 +44,11 @@ var app = (function(w, $)
             requestAnimationFrame(update);
         };
 
-        /*
-        Initialize the application on DOM Ready
+        /**
+            Initialize the application on DOM Ready
+            Creates a new canvas global module
+            Initialises a Vanvas View which will create a canvas dom node
+            Appends the created canvas node to the body node
         */
         $(function ()
         {
@@ -50,6 +60,10 @@ var app = (function(w, $)
             update();
         });
 
+<<<<<<< HEAD
+=======
+        // Return App or create it
+>>>>>>> ab60a4605fd82075f3b4689c25e4791b9c89d6a0
         return app || new App();
 
     }(window, jQuery));
