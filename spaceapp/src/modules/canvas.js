@@ -13,6 +13,11 @@
 
         Canvas.View = Backbone.View.extend({
             tagName: 'canvas',
+            /**
+             * Constructor function
+             * @param  {object} data {id, width, height}
+             * @return {null}      calls render
+             */
             initialize: function(data)
             {
                 var canvasData = typeof data != 'undefined'? data : {};
@@ -40,7 +45,7 @@
 
                 return this;
             },
-            renderParticle: function(item)
+            renderParticle:nction(item)
             {
                 var particleView = new Particle.View({
                     model: item,

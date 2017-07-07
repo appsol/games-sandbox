@@ -60,10 +60,7 @@ var app = (function(w, $)
             update();
         });
 
-<<<<<<< HEAD
-=======
         // Return App or create it
->>>>>>> ab60a4605fd82075f3b4689c25e4791b9c89d6a0
         return app || new App();
 
     }(window, jQuery));
